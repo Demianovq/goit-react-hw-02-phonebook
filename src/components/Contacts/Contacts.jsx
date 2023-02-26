@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid';
 
 export const ContactList = ({ contacts, filter, onDelete }) => {
   const makeFilteredList = (array, filterValue) => {
