@@ -34,12 +34,20 @@ export class App extends Component {
     this.setState({
       [name]: value,
     });
-    console.log(this.state);
   };
 
-  handleDelete = EvtId => {
+  OnFilteredContacts = () => {
+    if (this.state.filter) {
+      return this.state.contacts.filter(({ name }) =>
+        name.toLowerCase().includes(this.state.filter.toLowerCase())
+      );
+    }
+    return;
+  };
+
+  handleDelete = eId => {
     this.setState({
-      contacts: this.state.contacts.filter(({ id }) => id !== EvtId),
+      contacts: this.state.contacts.filter(({ id }) => id !== eId),
     });
   };
 
@@ -53,7 +61,7 @@ export class App extends Component {
         <Filter onFilter={this.handleFilter} />
         <ContactList
           contacts={this.state.contacts}
-          filter={this.state.filter}
+          filteredContacts={this.OnFilteredContacts()}
           onDelete={this.handleDelete}
         />
       </div>
